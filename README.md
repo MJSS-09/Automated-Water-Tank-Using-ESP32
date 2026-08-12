@@ -1,8 +1,8 @@
-# Automated Water Tank — IoT-Based Ultrasonic Water Level Monitoring & Auto-Fill System
+# 💧 Automated Water Tank — IoT-Based Ultrasonic Water Level Monitoring & Auto-Fill System
 
 An IoT-enabled water level monitoring system built around the ESP32 microcontroller, an HC-SR04 ultrasonic sensor, an RGB LED, a buzzer, and the Blynk IoT platform. The system continuously measures tank water level using non-contact ultrasonic sensing, classifies it into LOW / MEDIUM / FULL states, reflects that status locally through an RGB LED and buzzer, and pushes live readings to a Blynk dashboard for remote monitoring.
 
-## Features
+## ✨ Features
 
 - Non-contact water level sensing using an HC-SR04 ultrasonic sensor
 - Real-time classification into LOW, MEDIUM, and FULL tank states
@@ -12,7 +12,7 @@ An IoT-enabled water level monitoring system built around the ESP32 microcontrol
 - Derived motor-status flag showing when refilling is required
 - Compact, low-cost circuit with no display hardware required
 
-## Components Required
+## 🧰 Components Required
 
 | Component | Quantity / Specification |
 |---|---|
@@ -28,7 +28,7 @@ An IoT-enabled water level monitoring system built around the ESP32 microcontrol
 | Blynk Account + Blynk IoT Console | Free tier is sufficient |
 | Water Container / Tank (prototype) | 1 |
 
-## Circuit Connections
+## 🔌 Circuit Connections
 
 | Component Pin | ESP32 Pin |
 |---|---|
@@ -43,9 +43,9 @@ An IoT-enabled water level monitoring system built around the ESP32 microcontrol
 | Buzzer (+) | GPIO 14 |
 | Buzzer (−) | GND |
 
-> Note: The HC-SR04 ECHO pin outputs 5V, while ESP32 GPIOs are 3.3V tolerant only. A resistor voltage divider (e.g., 1kΩ and 2kΩ) on the ECHO line is recommended to protect the GPIO.
+> ⚠️ Note: The HC-SR04 ECHO pin outputs 5V, while ESP32 GPIOs are 3.3V tolerant only. A resistor voltage divider (e.g., 1kΩ and 2kΩ) on the ECHO line is recommended to protect the GPIO.
 
-## Working Principle
+## ⚙️ Working Principle
 
 The HC-SR04 emits a 40 kHz ultrasonic pulse from the TRIG pin and measures the echo return time on the ECHO pin. This is converted to a distance:
 
@@ -61,7 +61,7 @@ Water Level (%) = ((Tank Height − Measured Distance) / Tank Height) × 100
 
 The level, status label, and a derived motor-status flag are written every second to Blynk virtual pins V0, V1, and V2, updating the dashboard live.
 
-## Level Classification Logic
+## 🚦 Level Classification Logic
 
 | Distance / Water Level | Tank Status | RGB LED | Buzzer | Motor Status (V2) |
 |---|---|---|---|---|
@@ -71,7 +71,7 @@ The level, status label, and a derived motor-status flag are written every secon
 
 When the distance exceeds 90% of the tank height, the Motor Status widget is held steady ON rather than blinked, since `Blynk.virtualWrite()` sets a fixed value rather than a flashing state. The same double-beep alert is used for both the critical-low and FULL extremes.
 
-## Blynk Dashboard Setup
+## 📊 Blynk Dashboard Setup
 
 1. Create a Template on the Blynk Console named "Automated Water Tank" for the ESP32 (Wi-Fi).
 2. Datastream V0 — Integer (0–100), "Water Level" — bound to a Gauge widget.
@@ -79,13 +79,13 @@ When the distance exceeds 90% of the tank height, the Motor Status widget is hel
 4. Datastream V2 — Integer (0/1), "Motor Status" — bound to an LED widget (lit while refilling is needed).
 5. Copy the Template ID, Template Name, and Auth Token from the Device Info tab into the sketch.
 
-## Required Libraries
+## 📚 Required Libraries
 
 - Blynk (by Volodymyr Shymanskyy, via Arduino Library Manager)
 - ESP32 board package (by Espressif Systems, via Boards Manager)
 - WiFi.h (bundled with the ESP32 board package)
 
-## Advantages
+## ✅ Advantages
 
 - Non-contact sensing avoids corrosion and electrical risk from submerged probes
 - Live remote monitoring viewable from anywhere with Wi-Fi/internet
@@ -93,27 +93,27 @@ When the distance exceeds 90% of the tank height, the Motor Status widget is hel
 - Audible confirmation when the tank reaches a sufficiently full state
 - Compact circuit — no display hardware required, keeping cost and wiring minimal
 
-## Limitations
+## ⚠️ Limitations
 
 - Motor status is derived from level thresholds only; no physical motor/pump driver is wired in this build
 - Requires a stable 2.4 GHz Wi-Fi connection (ESP32 does not support 5 GHz networks)
 - Ultrasonic accuracy can be affected by turbulence, foam, or vapour on the water surface
 - Wi-Fi credentials and the Blynk auth token are hardcoded in the sketch and should be secured before deployment
 
-## Applications
+## 🌍 Applications
 
 - Domestic overhead/underground water tank monitoring
 - Remote farm or agricultural reservoir monitoring
 - Industrial storage tank status tracking with cloud visibility
 - Educational demonstration of ESP32 + Blynk IoT dashboard integration
 
-## Future Scope
+## 🚀 Future Scope
 
 - Add a relay-driven motor/pump for a complete closed-loop auto-fill system
 - Move Wi-Fi and Blynk credentials to a secure config rather than hardcoding
 - Add historical data logging and threshold alerts within the Blynk app
 
-## Author
+## 👤 Author
 
 **M. Jayantha Siva Srinivas**
 B.Tech, Electronics and Communication Engineering
