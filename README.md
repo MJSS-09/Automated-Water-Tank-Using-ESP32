@@ -115,5 +115,7 @@ When the distance exceeds 90% of the tank height, the Motor Status widget is hel
 
 ## 👤 Author
 
-**M. Jayantha Siva Srinivas**
-B.Tech, Electronics and Communication Engineering
+**M . Jayantha Siva Srinivas**
+B.Tech | Electronics and Communication Engineering
+ESSCI-Certified Embedded Fullstack & IoT Analyst , SRM University(AP)
+
